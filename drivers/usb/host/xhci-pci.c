@@ -40,6 +40,9 @@
 #define PCI_DEVICE_ID_INTEL_CHERRYVIEW_XHCI		0x22b5
 #define PCI_DEVICE_ID_INTEL_SUNRISEPOINT_H_XHCI		0xa12f
 #define PCI_DEVICE_ID_INTEL_SUNRISEPOINT_LP_XHCI	0x9d2f
+ HEAD
+=======
+>>>>>>> 4b76bb4... usb: xhci: applying XHCI_PME_STUCK_QUIRK to Intel BXT B0 host
 
 static const char hcd_name[] = "xhci_hcd";
 
@@ -139,7 +142,10 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 	if (pdev->vendor == PCI_VENDOR_ID_INTEL &&
 		(pdev->device == PCI_DEVICE_ID_INTEL_SUNRISEPOINT_LP_XHCI ||
 		 pdev->device == PCI_DEVICE_ID_INTEL_SUNRISEPOINT_H_XHCI ||
+HEAD
 		 pdev->device == PCI_DEVICE_ID_INTEL_CHERRYVIEW_XHCI)) {
+=======
+>>>>>>> 4b76bb4... usb: xhci: applying XHCI_PME_STUCK_QUIRK to Intel BXT B0 host
 		xhci->quirks |= XHCI_PME_STUCK_QUIRK;
 	}
 	if (pdev->vendor == PCI_VENDOR_ID_ETRON &&
