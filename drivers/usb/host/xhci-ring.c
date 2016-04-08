@@ -3962,10 +3962,13 @@ static int queue_command(struct xhci_hcd *xhci, struct xhci_command *cmd,
 	int ret;
 
 HEAD
+HEAD
 	if ((xhci->xhc_state & XHCI_STATE_DYING) ||
 		(xhci->xhc_state & XHCI_STATE_HALTED)) {
 =======
 >>>>>>> 797648b... usb: xhci: fix xhci locking up during hcd remove
+=======
+>>>>>>> ef6d6f5... xhci: fix 10 second timeout on removal of PCI hotpluggable xhci controllers
 		xhci_dbg(xhci, "xHCI dying or halted, can't queue_command\n");
 		return -ESHUTDOWN;
 	}
