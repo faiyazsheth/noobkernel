@@ -1576,7 +1576,10 @@ struct xhci_hcd {
 /* For controllers with a broken beyond repair streams implementation */
 #define XHCI_BROKEN_STREAMS	(1 << 19)
 #define XHCI_PME_STUCK_QUIRK	(1 << 20)
+ HEAD
 #define XHCI_PANIC_ON_WDOG	(1 << 21)
+=======
+>>>>>>> f1aa53d... usb: host: xhci: add a new quirk XHCI_NO_64BIT_SUPPORT
 	unsigned int		num_active_eps;
 	unsigned int		limit_active_eps;
 	/* There are two roothubs to keep track of bus suspend info for */
