@@ -723,12 +723,6 @@ static ssize_t ffs_epfile_io(struct file *file, struct ffs_io_data *io_data)
 	if (atomic_read(&epfile->error))
 		return -ENODEV;
 
-	pr_debug("%s: len %zu, read %d\n", __func__, io_data->len,
-			io_data->read);
-
-	if (atomic_read(&epfile->error))
-		return -ENODEV;
-
 	/* Are we still active? */
 	if (WARN_ON(epfile->ffs->state != FFS_ACTIVE)) {
 		ret = -ENODEV;
@@ -754,11 +748,7 @@ static ssize_t ffs_epfile_io(struct file *file, struct ffs_io_data *io_data)
 		 * and wait for next epfile open to happen
 		 */
 		if (!atomic_read(&epfile->error)) {
-<<<<<<< HEAD
 			ret = wait_event_freezable(epfile->wait,
-=======
-			ret = wait_event_interruptible(epfile->wait,
->>>>>>> 1021c15... usb: gadget: Add snapshot of f_fs changes from msm-3.10
 					(ep = epfile->ep));
 			if (ret < 0)
 				goto error;
@@ -1135,10 +1125,7 @@ ffs_epfile_release(struct inode *inode, struct file *file)
 
 	ENTER();
 
-<<<<<<< HEAD
 	atomic_set(&epfile->opened, 0);
-=======
->>>>>>> 1021c15... usb: gadget: Add snapshot of f_fs changes from msm-3.10
 	atomic_set(&epfile->error, 1);
 	ffs_data_closed(epfile->ffs);
 	file->private_data = NULL;
@@ -1592,7 +1579,6 @@ static void ffs_data_clear(struct ffs_data *ffs)
 {
 	ENTER();
 
-<<<<<<< HEAD
 	pr_debug("%s: ffs->gadget= %pK, ffs->flags= %lu\n", __func__,
 			ffs->gadget, ffs->flags);
 
@@ -1601,17 +1587,6 @@ static void ffs_data_clear(struct ffs_data *ffs)
 	/* Dump ffs->gadget and ffs->flags */
 	if (ffs->gadget)
 		pr_err("%s: ffs:%pK ffs->gadget= %pK, ffs->flags= %lu\n",
-=======
-	pr_debug("%s: ffs->gadget= %p, ffs->flags= %lu\n", __func__,
-			ffs->gadget, ffs->flags);
-
-	if (test_and_clear_bit(FFS_FL_CALL_CLOSED_CALLBACK, &ffs->flags))
-		ffs_closed(ffs);
-
-	/* Dump ffs->gadget and ffs->flags */
-	if (ffs->gadget)
-		pr_err("%s: ffs:%p ffs->gadget= %p, ffs->flags= %lu\n",
->>>>>>> 1021c15... usb: gadget: Add snapshot of f_fs changes from msm-3.10
 				__func__, ffs, ffs->gadget, ffs->flags);
 	BUG_ON(ffs->gadget);
 
