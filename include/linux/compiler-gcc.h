@@ -114,7 +114,6 @@
  * would be.
  * [...]
  */
- HEAD
 #define __pure			__attribute__((pure))
 #define __aligned(x)		__attribute__((aligned(x)))
 #define __printf(a, b)		__attribute__((format(printf, a, b)))
@@ -122,11 +121,8 @@
 #define __attribute_const__	__attribute__((__const__))
 #define __maybe_unused		__attribute__((unused))
 #define __always_unused		__attribute__((unused))
-=======
->>>>>>> 677fa15... compiler-gcc: integrate the various compiler-gcc[345].h files
 
 /* gcc version specific checks */
-
 #if GCC_VERSION < 30200
 # error Sorry, your compiler is too old - please upgrade it.
 #endif
@@ -240,7 +236,6 @@
 #define KASAN_ABI_VERSION 3
 #endif
 
- HEAD
 #if GCC_VERSION >= 40902
 /*
  * Tell the compiler that address safety instrumentation (KASAN)
@@ -250,8 +245,6 @@
 #define __no_sanitize_address __attribute__((no_sanitize_address))
 #endif
 
-=======
->>>>>>> 677fa15... compiler-gcc: integrate the various compiler-gcc[345].h files
 #endif	/* gcc version >= 40000 specific checks */
 
 #if !defined(__noclone)

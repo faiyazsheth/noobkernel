@@ -3835,13 +3835,10 @@ static int xhci_setup_device(struct usb_hcd *hcd, struct usb_device *udev,
 	u64 temp_64;
 	struct xhci_command *command = NULL;
 
-HEAD
 	mutex_lock(&xhci->mutex);
 
 	if (xhci->xhc_state)	/* dying, removing or halted */
 		goto out;
-=======
->>>>>>> ef6d6f5... xhci: fix 10 second timeout on removal of PCI hotpluggable xhci controllers
 
 	if (!udev->slot_id) {
 		xhci_dbg_trace(xhci, trace_xhci_dbg_address,
