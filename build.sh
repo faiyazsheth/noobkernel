@@ -3,7 +3,7 @@
 ### Prema Chand Alugu (premaca@gmail.com)
 ### Shivam Desai (shivamdesaixda@gmail.com)
 ### Nathan Chancellor (natechancellor@gmail.com)
-### A custom build script to build zImage & DTB(Anykernel2 method)
+### A custom build script to build Image & DTB(Anykernel2 method)
 
 
 ## Copy this script inside the kernel directory
@@ -43,7 +43,7 @@ rm -rf $ANY_KERNEL2_DIR/dtb
 rm -rf $ANY_KERNEL2_DIR/Image.gz
 rm -rf $ANY_KERNEL2_DIR/$FINAL_KERNEL_ZIP
 
-echo "**** Copying zImage ****"
+echo "**** Copying Image ****"
 cp $KERNEL_DIR/arch/arm64/boot/Image.gz $ANY_KERNEL2_DIR/
 echo "**** Copying dtb ****"
 cp $KERNEL_DIR/arch/arm/boot/dtb $ANY_KERNEL2_DIR/
