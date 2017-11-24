@@ -31,7 +31,7 @@ make -j$JOBS
 echo "**** Generating DT.IMG ****"
 $DTBTOOL/dtbToolCM -2 -o $KERNEL_DIR/arch/arm/boot/dtb -s 2048 -p $KERNEL_DIR/scripts/dtc/ $KERNEL_DIR/arch/arm/boot/dts/qcom/
 
-echo "**** Verify zImage & dtb ****"
+echo "**** Verify Image & dtb ****"
 ls $KERNEL_DIR/arch/arm64/boot/Image.gz
 ls $KERNEL_DIR/arch/arm/boot/dtb
 
