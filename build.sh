@@ -8,7 +8,7 @@
 
 ## Copy this script inside the kernel directory
 KERNEL_DIR=$PWD
-KERNEL_TOOLCHAIN=/home/shethfaiyaz4/lol/noob/lol/bin/aarch64-linux-android-
+KERNEL_TOOLCHAIN=/home/shethfaiyaz4/lol/noob/lol/bin/aarch64-linaro-linux-android-
 KERNEL_DEFCONFIG=potter_defconfig
 DTBTOOL=$KERNEL_DIR/Dtbtool/
 JOBS=16
