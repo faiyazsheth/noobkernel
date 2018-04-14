@@ -12,6 +12,7 @@ export TOOL_CHAIN_PATH="/home/JuiceSSH/noob/tc/bin"
 export CLANG_TCHAIN="/home/JuiceSSH/noob/clang/clang-4691093/bin/clang"
 export LD_LIBRARY_PATH="${TOOL_CHAIN_PATH}/../lib"
 export PATH=$PATH:${TOOL_CHAIN_PATH}
+export KBUILD_COMPILER_STRING="clang version 6.0.2"
 
 kmake() {
 		        make CC="${CCACHE} ${CLANG_TCHAIN}" \
