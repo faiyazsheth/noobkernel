@@ -373,6 +373,15 @@ static bool mdss_rotator_is_work_pending(struct mdss_rot_mgr *mgr,
 	return false;
 }
 
+static void mdss_rotator_install_fence_fd(struct mdss_rot_entry_container *req)
+{
+	int i = 0;
+
+	for (i = 0; i < req->count; i++)
+		sync_fence_install(req->entries[i].output_fence,
+				req->entries[i].output_fence_fd);
+}
+
 static int mdss_rotator_create_fence(struct mdss_rot_entry *entry)
 {
 	int ret = 0, fd;
@@ -411,7 +420,6 @@ static int mdss_rotator_create_fence(struct mdss_rot_entry *entry)
 		goto get_fd_err;
 	}
 
-	sync_fence_install(fence, fd);
 	rot_timeline->next_value++;
 	mutex_unlock(&rot_timeline->lock);
 
@@ -687,7 +695,7 @@ static struct mdss_rot_hw_resource *mdss_rotator_hw_alloc(
 	struct mdss_rot_hw_resource *hw;
 	struct mdss_data_type *mdata = mdss_mdp_get_mdata();
 	u32 pipe_ndx, offset = mdss_mdp_get_wb_ctl_support(mdata, true);
-	int ret;
+	int ret = 0;
 
 	hw = devm_kzalloc(&mgr->pdev->dev, sizeof(struct mdss_rot_hw_resource),
 		GFP_KERNEL);
@@ -748,8 +756,10 @@ static struct mdss_rot_hw_resource *mdss_rotator_hw_alloc(
 	if (ret)
 		goto error;
 
-	if (pipe_id >= mdata->ndma_pipes)
+	if (pipe_id >= mdata->ndma_pipes) {
+		ret = -EINVAL;
 		goto error;
+	}
 
 	pipe_ndx = mdata->dma_pipes[pipe_id].ndx;
 	hw->pipe = mdss_mdp_pipe_assign(mdata, hw->mixer,
@@ -2244,6 +2254,7 @@ static int mdss_rotator_handle_request(struct mdss_rot_mgr *mgr,
 		goto handle_request_err1;
 	}
 
+	mdss_rotator_install_fence_fd(req);
 	mdss_rotator_queue_request(mgr, private, req);
 
 	mutex_unlock(&mgr->lock);
@@ -2404,6 +2415,7 @@ static int mdss_rotator_handle_request32(struct mdss_rot_mgr *mgr,
 		goto handle_request32_err1;
 	}
 
+	mdss_rotator_install_fence_fd(req);
 	mdss_rotator_queue_request(mgr, private, req);
 
 	mutex_unlock(&mgr->lock);
