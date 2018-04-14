@@ -3,13 +3,13 @@
 KERNEL_DIR=$PWD
 KERNEL_DEFCONFIG=potter_defconfig
 DTBTOOL=$KERNEL_DIR/Dtbtool/
-ANY_KERNEL2_DIR=/home/faiyaz/noob/AnyKernel2
+ANY_KERNEL2_DIR=/home/JuiceSSH/noob/AnyKernel2
 FINAL_KERNEL_ZIP=NoobKernel.zip
 CCACHE=$(command -v ccache)
 export ARCH="arm64"
 export CROSS_COMPILE="aarch64-linux-gnu-"
-export TOOL_CHAIN_PATH="/home/faiyaz/noob/tc/bin"
-export CLANG_TCHAIN="/home/faiyaz/noob/clang/clang-4691093/bin/clang"
+export TOOL_CHAIN_PATH="/home/JuiceSSH/noob/tc/bin"
+export CLANG_TCHAIN="/home/JuiceSSH/noob/clang/clang-4691093/bin/clang"
 export LD_LIBRARY_PATH="${TOOL_CHAIN_PATH}/../lib"
 export PATH=$PATH:${TOOL_CHAIN_PATH}
 
@@ -43,8 +43,8 @@ kmake() {
 																																																																																																									        cp $KERNEL_DIR/arch/arm/boot/dtb $ANY_KERNEL2_DIR/
 																																																																																																																						        cd $ANY_KERNEL2_DIR/
 																																																																																																																																				        zip -r9 $FINAL_KERNEL_ZIP * -x README $FINAL_KERNEL_ZIP
-																																																																																																																																																			        rm -rf /home/faiyaz/noob/$FINAL_KERNEL_ZIP
-																																																																																																																																																																			        cp /home/faiyaz/noob/AnyKernel2/$FINAL_KERNEL_ZIP /home/faiyaz/noob/$FINAL_KERNEL_ZIP
+																																																																																																																																																			        rm -rf /home/JuiceSSH/noob/$FINAL_KERNEL_ZIP
+																																																																																																																																																																			        cp /home/JuiceSSH/noob/AnyKernel2/$FINAL_KERNEL_ZIP /home/JuiceSSH/noob/$FINAL_KERNEL_ZIP
 																																																																																																																																																																																			}
 
 																																																																																																																																																																																																		GoodBye () {
